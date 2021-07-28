@@ -50,9 +50,9 @@ body {
   border-radius: 4px;
 
   background-color: #212121;
-  background-image: url("/src/assets/i.jpg");
+  background-image: url("/src/assets/mota.png");
   background-repeat: no-repeat;
   background-position: 0 0;
 
-  cursor: none;
+  /*cursor: none;*/
 }
