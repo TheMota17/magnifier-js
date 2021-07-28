@@ -1,22 +1,17 @@
 export default class Magnifier {
   constructor(args) {
-    // Data
-    this.origImg = { w: args.origImgW, h: args.origImgH };
-    this.viewImg = { w: args.viewImgW, h: args.viewImgH };
-    this.magnifier = { w: args.magnifierW, h: args.magnifierH };
-
     // Chage width & height for elems
     this.wrapper = document.getElementById(args.wrapper);
-    this.wrapper.style.width = this.viewImg.w + "px";
-    this.wrapper.style.height = this.viewImg.h + "px";
+    this.wrapper.style.width = args.viewImgW + "px";
+    this.wrapper.style.height = args.viewImgH + "px";
 
     this.img = document.getElementById(args.img);
-    this.img.style.width = this.viewImg.w + "px";
-    this.img.style.height = this.viewImg.h + "px";
+    this.img.style.width = args.viewImgW + "px";
+    this.img.style.height = args.viewImgH + "px";
 
     this.elem = document.getElementById(args.el);
-    this.elem.style.width = this.magnifier.w + "px";
-    this.elem.style.height = this.magnifier.h + "px";
+    this.elem.style.width = args.magnifierW + "px";
+    this.elem.style.height = args.magnifierH + "px";
 
     // Change events
     this.wrapper.addEventListener(
@@ -29,8 +24,11 @@ export default class Magnifier {
     const mouseX = e.clientX - this.wrapper.getBoundingClientRect().x;
     const mouseY = e.clientY - this.wrapper.getBoundingClientRect().y;
 
-    const magnifierX = mouseX - this.magnifier.w / 2;
-    const magnifierY = mouseY - this.magnifier.h / 2;
+    const magnifierX = mouseX - this.elem.clientWidth / 2;
+    const magnifierY = mouseY - this.elem.clientHeight / 2;
+
+    const naturalDiffX = this.img.naturalWidth / this.img.clientWidth;
+    const naturalDiffY = this.img.naturalHeight / this.img.clientHeight;
 
     if (
       mouseX < 0 ||
@@ -51,8 +49,8 @@ export default class Magnifier {
 
     // Background pos
     this.elem.style.backgroundPosition = `
-      ${-(mouseX * 2 - this.elem.clientWidth / 2)}px 
-      ${-(mouseY * 2 - this.elem.clientHeight / 2)}px
+      ${-(mouseX * naturalDiffX - this.elem.clientWidth / 2)}px 
+      ${-(mouseY * naturalDiffY - this.elem.clientHeight / 2)}px
     `;
   }
 
