@@ -1,6 +1,6 @@
 export default class Magnifier {
   constructor(args) {
-    // Chage width & height for elems
+    // Chage width & height to elems
     this.wrapper = document.getElementById(args.wrapper);
     this.wrapper.style.width = args.viewImgW + "px";
     this.wrapper.style.height = args.viewImgH + "px";
@@ -45,7 +45,7 @@ export default class Magnifier {
     this.elem.style.display = "block";
 
     // Magnifier pos
-    this.elem.style.transform = `translate3d(${magnifierX}px, ${magnifierY}px, 0px)`;
+    this.elem.style.transform = `translate(${magnifierX}px, ${magnifierY}px)`;
 
     // Background pos
     this.elem.style.backgroundPosition = `
